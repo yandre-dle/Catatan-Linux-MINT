@@ -1,0 +1,117 @@
+install docker di linux mint 20.1
+https://techviewleo.com/how-to-install-and-use-docker-in-linux-mint/
+
+sudo apt-get update 
+// Update your system
+
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+//Install Docker dependencies and add Docker official key
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+//Next add Docker official key which is important in enabling Docker repo
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(. /etc/os-release; echo "$UBUNTU_CODENAME") stable"
+//Adding Docker repository
+
+
+sudo apt-get update
+//Update your system again
+
+sudo apt-get -y install docker-ce
+//Install Docker CE on Linux Mint 20
+
+----perbedaan 1
+yandre-dle@yandredle-ThinkPad-T540p:~$ sudo docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+yandre-dle@yandredle-ThinkPad-T540p:~$ 
+
+----perbedaan 2
+yandre-dle@yandredle-ThinkPad-T540p:~$ docker run hello-world
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+yandre-dle@yandredle-ThinkPad-T540p:~$
+
+-->solusi
+
+1>
+membuat user 
+
+sudo useradd -m userdocker
+sudo passwd userdocker
+New password: 
+Retype new password:
+
+2>
+membuat group
+sudo groupadd docker
+
+3>
+sudo usermod -a -G docker userdocker 
+// menambahkan user ke group
+
+sudo chsh -s /bin/bash userdocker  // menambahkan user ke default shell
+
+4>
+Switch session to docker group
+newgrp - docker
+
+5>
+Run an example to test
+
+yandre-dle@yandredle-ThinkPad-T540p:~$ sudo login userdocker
+Password: 
+Last login: Thu Jan  7 01:16:50 WIB 2021 on pts/1
+userdocker@yandredle-ThinkPad-T540p:~$
+
+userdocker@yandredle-ThinkPad-T540p:~$ docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+userdocker@yandredle-ThinkPad-T540p:~$ 
+
+
+
+
+
+
