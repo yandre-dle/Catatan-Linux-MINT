@@ -3,7 +3,7 @@ Xampp shortcut on Start Menu
 yandre-dle@yandredle-ThinkPad-T540p:~$ cd /usr/share/applications
 
 sudo touch xampp.desktop
-sudo gedit xampp.desktop
+sudo apt-get install gedit
 sudo gedit xampp.desktop
 
 Paste following to the file content:
