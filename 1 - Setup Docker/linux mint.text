@@ -110,6 +110,37 @@ For more examples and ideas, visit:
 
 userdocker@yandredle-ThinkPad-T540p:~$ 
 
+======>
+Control Docker with systemd
+Start manually
+sudo systemctl start docker
+sudo service docker start
+
+Flush changes and restart Docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+Disable dockerd at startup
+sudo systemctl disable docker
+
+Disable Docker autostart at boot
+$ sudo systemctl disable docker.service
+$ sudo systemctl disable docker.socket
+======>
+
+docker run -i -t -d -p 80:80 -p 443:443 -p 12320:12320 -p 12322:12322 -p 12321:12321 <nama imagesnya>
+======>
+
+/usr/sbin/start.sh
+
+======>
+portainer
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+=====>
+
+confconsole
+turnkey-init
 
 
 
